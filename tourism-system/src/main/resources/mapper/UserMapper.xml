@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tourismsystem.mapper.UserMapper">
+
+    <!-- Get all users -->
+    <select id="getAllUsers" resultType="com.example.tourismsystem.entity.User">
+        SELECT * FROM users
+    </select>
+
+    <!-- Get user by ID -->
+    <select id="getUserById" parameterType="int" resultType="com.example.tourismsystem.entity.User">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+
+    <!-- Insert a new user -->
+    <insert id="insertUser" parameterType="com.example.tourismsystem.entity.User">
+        INSERT INTO users (username, password, email)
+        VALUES (#{username}, #{password}, #{email})
+    </insert>
+
+    <!-- Update an existing user -->
+    <update id="updateUser" parameterType="com.example.tourismsystem.entity.User">
+        UPDATE users
+        SET username = #{username}, password = #{password}, email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete a user by ID -->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+</mapper>

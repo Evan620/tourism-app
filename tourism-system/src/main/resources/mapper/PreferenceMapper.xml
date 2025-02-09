@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tourismsystem.mapper.PreferenceMapper">
+
+    <!-- Get preferences by user ID -->
+    <select id="getPreferencesByUserId" parameterType="int" resultType="com.example.tourismsystem.entity.Preference">
+        SELECT * FROM preferences WHERE user_id = #{userId}
+    </select>
+
+    <!-- Insert a new preference -->
+    <insert id="insertPreference" parameterType="com.example.tourismsystem.entity.Preference">
+        INSERT INTO preferences (user_id, destination_type, activity, budget)
+        VALUES (#{user.id}, #{destinationType}, #{activity}, #{budget})
+    </insert>
+
+    <!-- Update an existing preference -->
+    <update id="updatePreference" parameterType="com.example.tourismsystem.entity.Preference">
+        UPDATE preferences
+        SET destination_type = #{destinationType}, activity = #{activity}, budget = #{budget}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete a preference by ID -->
+    <delete id="deletePreference" parameterType="int">
+        DELETE FROM preferences WHERE id = #{id}
+    </delete>
+
+</mapper>

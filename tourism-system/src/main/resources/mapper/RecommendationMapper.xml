@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tourismsystem.mapper.RecommendationMapper">
+
+    <!-- Get recommendations by user ID -->
+    <select id="getRecommendationsByUserId" parameterType="int" resultType="com.example.tourismsystem.entity.Recommendation">
+        SELECT * FROM recommendations WHERE user_id = #{userId}
+    </select>
+
+    <!-- Insert a new recommendation -->
+    <insert id="insertRecommendation" parameterType="com.example.tourismsystem.entity.Recommendation">
+        INSERT INTO recommendations (user_id, destination, description, cost)
+        VALUES (#{user.id}, #{destination}, #{description}, #{cost})
+    </insert>
+
+    <!-- Update an existing recommendation -->
+    <update id="updateRecommendation" parameterType="com.example.tourismsystem.entity.Recommendation">
+        UPDATE recommendations
+        SET destination = #{destination}, description = #{description}, cost = #{cost}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete a recommendation by ID -->
+    <delete id="deleteRecommendation" parameterType="int">
+        DELETE FROM recommendations WHERE id = #{id}
+    </delete>
+
+</mapper>
